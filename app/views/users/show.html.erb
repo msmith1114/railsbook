@@ -1,2 +1,16 @@
 <%= @user.email %>
 <%= @user.first_name %>
+<hr>
+
+
+<% @posts.each do |post| %>
+<p>
+  <%= post.content %>
+</p>
+<% end %>
+
+
+<%= form_for @post do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "Create" %>
+<% end %>
