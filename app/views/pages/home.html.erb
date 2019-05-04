@@ -11,7 +11,7 @@
 <% end %>
 
 
-<%= form_for @post do |f| %>
+<%= form_for [@post,Post.new] do |f| %>
   <%= f.text_field :content %>
   <%= f.submit "Create" %>
 <% end %>

@@ -7,4 +7,8 @@ class UsersController < ApplicationController
         @posts = @user.posts
     end
 
+    def search
+        @users = User.where('first_name LIKE ?', "%#{params[:q]}%")
+    end 
+
 end
