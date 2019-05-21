@@ -3,4 +3,10 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :likes
+
+  def liked?
+    self.likes.exists?
+  end
+
 end
+

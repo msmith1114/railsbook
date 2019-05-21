@@ -1,22 +1,18 @@
-<%= @user.email %>
-<%= @user.first_name %>
-<hr>
-
 
 <% @posts.each do |post| %>
-<p>
-  <%= post.content %>
-</p>
-<%= link_to "Like", like_path(@user, post_id: post), remote: true, method: :post %>
+  <p>
+    <%= post.content %>
+  </p>
+  <% if post.liked? %>
+    <i class="far fa-thumbs-up"> Like</i>
+  <% else %>
+    <%= link_to "Like", like_path(post_id: post), remote: true, method: :post  %>
+  <% end %>
 <% end %>
 
+<hr>
 
-<%= form_for [@post,Post.new] do |f| %>
+<%= form_for [@user,@post,Post.new] do |f| %>
   <%= f.text_field :content %>
   <%= f.submit "Create" %>
-<% end %>
-<hr>
-Pending Friend Requests
-<% current_user.pending_requests.each do |friend_request| %>
-  <p><%= friend_request.friend.first_name %> <%= friend_request.friend.last_name %></p><%= link_to 'Confirm Friend', friendship_path(friend_request), remote: true, method: :patch %>
 <% end %>

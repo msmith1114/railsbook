@@ -12,3 +12,45 @@
  *
  */
  @import "bootstrap";
+
+
+ .confirm-button, .confirm-button:hover {
+    display: block;
+    float: right;
+    background: #1C68AB;
+    align-self: right;
+    font-size: 14px;
+    padding: 3px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+ }
+
+ .alert-notice {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  .alert-notice hr {
+    border-top-color: #a6e1ec;
+  }
+  .alert-notice .alert-link {
+    color: #245269;
+  }
+
+
+  .alert-alert {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+  
+  .alert-alert hr {
+    border-top-color: #ffe8a1;
+  }
+  
+  .alert-alert .alert-link {
+    color: #533f03;
+  }
+

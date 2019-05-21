@@ -10,9 +10,19 @@ class PostsController < ApplicationController
 
   def like
     post = Post.find(params[:post_id])
-    puts post
     like = post.likes.new(user_id: current_user.id)
     if like.save
+      #nothing for now
+    else
+      flash[:alert] = "You have already liked that post"
+      redirect_to current_user
+    end
+  end
+
+  def unlike
+    post = Post.find(params[:post_id])
+    like = post.likes.new(user_id: current_user.id)
+    if like.destroy
       #nothing for now
     else
       flash[:alert] = "You have already liked that post"

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <%= link_to new_user_registration_path do %>
     <%= image_tag "railbook_logo.png", id: "logo", class: "navbar-brand" %>
   <% end %>
@@ -6,32 +6,63 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <%= form_tag search_path, method: :get, enforce_utf8: false, class: ['form-inline my-2 my-lg-0'] do %>
-      <%= text_field_tag :q, params[:q], class: "form-control", placeholder: "Search"  %>
-      <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success my-2 my-sm-0' %>
+  <% if user_signed_in? %>
+    <%= form_tag(search_path, method: "get", class: 'form-inline my-2 my-lg-0') do %>
+      <%= text_field_tag :q, nil, placeholder: 'Search', class: 'form-control mr-sm-2' %>
+      <%= submit_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0' %>
     <% end %>
-  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to current_user.full_name, user_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if current_user.pending_requests.any? %>
+            <% current_user.pending_requests.each do |friend_request| %>
+            <div class="dropdown-item">
+              <%= friend_request.friend.full_name %><%= link_to 'Confirm', friendship_path(friend_request), remote: true, method: :patch, class: "confirm-button" %>
+              </div>
+            <% end %>
+          <% else %>
+            <em class="dropdown-item text-center">No new requests</em>
+          <% end %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-bell"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Logout", logout_path, class: "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  <% else %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-inline"}) do |f| %>
+          <div class="field field form-group mb-2">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control-sm" %>
+          </div>
+          <div class="field field form-group mx-sm-3 mb-2">
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control-sm" %>
+          </div>
+          <div class="actions form-group mb-2">
+            <%= f.submit "Log in", class: "btn-sm btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </nav>
