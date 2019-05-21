@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
         friendship = current_user.friendships.build(friend_id: params[:friend_id])
         if friendship.save
             flash.notice = "Friendship confirmation sent"
-            redirect_to current_user
+            redirect_to root_path
         else 
             puts friendship.errors.messages
             flash.now[:alert] = "Failed to add friend"
@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
 
         if friendship.update_attributes(status: "Approved")
             flash.notice = "Friend Approved"
-            redirect_to current_user
+            redirect_to root_path
         else
             puts friendship.errors.messages
             flash.now[:alert] = "Failed friendship confirm"

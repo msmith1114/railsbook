@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def like
-    post = Post.find(params[:post_id])
+    post = Post.find(params[:id])
     like = post.likes.new(user_id: current_user.id)
     if like.save
       #nothing for now

@@ -1,15 +1,15 @@
-<%= @user.email %>
-<%= @user.first_name %>
-<hr>
-
-<% @posts.each do |post| %>
-  <p>
-    <%= post.content %>
-  </p>
-  <% if post.liked? %>
-    <i class="far fa-thumbs-up"> Like</i>
-  <% else %>
-    <%= link_to "Like", like_path(post_id: post), remote: true, method: :post  %>
+<div class="row justify-content-center">
+  <div class="col-6">
+  <hr>
+  <% @posts.each do |post| %>
+    <p>
+      <%= post.content %>
+    </p>
+    <% if post.liked? %>
+      <i class="far fa-thumbs-up"> Like</i>
+    <% else %>
+      <%= link_to "Like", like_path(post), remote: true, method: :post  %>
+    <% end %>
   <% end %>
-<% end %>
-
+  </div>
+</div>

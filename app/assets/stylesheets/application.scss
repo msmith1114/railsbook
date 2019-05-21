@@ -13,6 +13,19 @@
  */
  @import "bootstrap";
 
+ .not-liked:link, .not-liked:active, .not-liked:visited, .not-liked:hover {
+  text-decoration: none !important;
+  color: #898A8B;
+  font-weight: bold;
+ }
+
+ .liked {
+  color: #1C69AB;
+  font-weight: bold;
+ }
+
+
+
 
  .confirm-button, .confirm-button:hover {
     display: block;
@@ -26,6 +39,18 @@
     color: white;
     font-weight: bold;
  }
+
+ .add-button, .add-button:hover {
+  display: inline-block;
+  background: #1C68AB;
+  align-self: right;
+  font-size: 14px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
 
  .alert-notice {
     color: #31708f;
@@ -52,5 +77,22 @@
   
   .alert-alert .alert-link {
     color: #533f03;
+  }
+
+  .nav-photo {
+    display: inline-block;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: 1px solid white;
+  }
+
+  .search-photo {
+    display: inline-block;
+    border-radius: 5px;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+    border: 1px solid black;
   }
 
