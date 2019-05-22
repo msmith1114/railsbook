@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   # Device 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     post 'login', to: 'devise/sessions#create'
     get 'logout', to: 'devise/sessions#destroy'
-    get 'sign_up', to: 'devise/registrations#new'
-    get 'sign_up/edit', to: 'devise/registrations#edit'
+    get 'sign_up', to: 'users/registrations#new'
+    get 'sign_up/edit', to: 'users/registrations#edit'
   end
 
   # Static pages
