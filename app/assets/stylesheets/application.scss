@@ -25,7 +25,36 @@
  }
 
 
+ .post-box {
+  min-width: 100%;
+  height: 75px !important;
+ }
 
+ 
+ .pending-request {
+  display: inline-block;
+  background: #1C68AB;
+  align-self: right;
+  font-size: 14px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+
+ .share-button {
+  background: #1C68AB;
+  align-self: right;
+  font-size: 14px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+ }
 
  .confirm-button, .confirm-button:hover {
     display: block;

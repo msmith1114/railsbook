@@ -2,9 +2,9 @@ class PagesController < ApplicationController
 
     def home
         if user_signed_in?
-            puts user_session
+            @post = Post.new
             @user = current_user
-            friend_ids = @user.friends.pluck(:id)
+            friend_ids = @user.friends.ids
             friend_ids << current_user.id
             @posts = Post.where(user_id: friend_ids)
         else

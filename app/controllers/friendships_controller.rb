@@ -1,7 +1,8 @@
 class FriendshipsController < ApplicationController
 
     def create  
-        friendship = current_user.friendships.build(friend_id: params[:friend_id])
+        pending_friend = User.find(params[:friend_id])
+        friendship = pending_friend.friendships.build(friend_id: current_user.id)
         if friendship.save
             flash.notice = "Friendship confirmation sent"
             redirect_to root_path
@@ -12,7 +13,6 @@ class FriendshipsController < ApplicationController
     end
 
     def update
-        puts params
         friendship = Friendship.find(params[:id])
 
         if friendship.update_attributes(status: "Approved")

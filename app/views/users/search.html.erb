@@ -1,5 +1,9 @@
 <% @users.each do |user| %>
 <hr>
-  <%= image_tag user.avatar.variant(resize: "100x100"), class: "search-photo" if user.avatar.attached? %> <%= link_to user.full_name, user_path(user) %> <%= link_to 'Add Friend', friendships_path(friend_id: user.id), class: "add-button", remote: true, method: :post unless user.friends?(current_user) || user == current_user %>
+<% if current_user.pending_requests.pluck(:user_id).include?(user.id) %>
+  <%= image_tag user.avatar.variant(resize: "100x100"), class: "search-photo" if user.avatar.attached? %> <%= link_to user.full_name, user_path(user) %> <span class="pending-request">Pending Request</span>
+<% else %>
+  <%= image_tag user.avatar.variant(resize: "100x100"), class: "search-photo" if user.avatar.attached? %> <%= link_to user.full_name, user_path(user) %> <%= link_to 'Add Friend', friendships_path(friend_id: user.id), class: "add-button", remote: true, method: :post unless user.friends?(current_user) || user == current_user  %>
+<% end %>
 <hr>
 <% end %>
