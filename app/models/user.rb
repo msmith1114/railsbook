@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
          
   def pending_requests
-    self.inverse_friendships.select {|friendship| friendship.status == "Pending"}
+    self.friendships.select {|friendship| friendship.status == "Pending"}
   end 
 
   def friends?(current_user)
