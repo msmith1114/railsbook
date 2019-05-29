@@ -1,4 +1,14 @@
 <div class="row justify-content-center">
+  <div class="col-4">
+  <hr>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><i class="fas fa-id-badge"></i>&nbsp; <%= @user.full_name%></li>
+    <li class="list-group-item"><i class="fas fa-briefcase"></i>&nbsp; <%= @user.occupation %></li>
+    <li class="list-group-item"><i class="fas fa-home"></i>&nbsp; <%= @user.location %></li>
+    <li class="list-group-item"><i class="fas fa-heart"></i>&nbsp; <%= @user.marital_status_wordify %></li>
+    <li class="list-group-item"><%= @user.bio %></li>
+  </ul>
+  </div>
   <div class="col-6">
   <hr>
     <%= render 'posts/post' %>

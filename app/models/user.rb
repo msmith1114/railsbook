@@ -28,4 +28,14 @@ class User < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def marital_status_wordify
+    case self.marital_status
+    when 1
+      return "Single"
+    when 2
+      return "Married"
+    when 3
+      return "It's Complicated"
+    end
+  end
 end
