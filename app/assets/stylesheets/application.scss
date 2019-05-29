@@ -125,3 +125,23 @@
     border: 1px solid black;
   }
 
+  // Font Awesome Glyph CSS
+  .far[data-count]{
+    position:relative;
+  }
+  
+  .far[data-count]:after{
+      position: absolute;
+      right: -0.75em;
+      top: -.75em;
+      content: attr(data-count);
+      padding: .5em;
+      border-radius: 15em;
+      line-height: .9em;
+      color: white;
+      background: rgba(255,0,0,.65);
+      text-align: center;
+      min-width: 2em;
+      font: bold .4em sans-serif;
+  }
+
