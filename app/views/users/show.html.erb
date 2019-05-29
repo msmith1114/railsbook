@@ -1,8 +1,13 @@
 <div class="row justify-content-center">
   <div class="col-6">
   <hr>
-  <% @posts.each do |post| %>
-    <div class="card" style="width: 100%;">
+    <% @posts.each do |post| %>
+    <div class="card border-primary mb-3" style="width: 100%;">
+    <div class="card-header">
+      <blockquote class="blockquote mb-0">
+        <footer class="blockquote-footer"><small><%=post.created_at.strftime("Posted on %m/%d/%Y at %I:%M%p")%></small></footer>
+      </blockquote>
+    </div>
       <%= image_tag post.post_image.variant(resize: "150x150"), class: 'card-img-top' if post.post_image.attached? %>
       <div class="card-body">
         <p class="card-text"><%= post.content %></p>
