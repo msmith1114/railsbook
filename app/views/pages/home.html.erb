@@ -5,7 +5,12 @@
   <div>
     <%= form_for [@user,@post] do |f| %>
       <%= render 'shared/form_errors', object: @post %>
-      <%= f.text_area :content, placeholder: "What's on your mind?", class: "form-control post-box"  %>
+      <div class="form-group">
+        <%= f.text_area :content, placeholder: "What's on your mind?", class: "form-control post-box"  %>
+      </div>
+      <div class="form-group">
+        <%= f.file_field :post_image, class: "form-control-file" %>
+      </div>
       <%= f.submit "Share", class: "share-button" %>
     <% end %>
   </div>
@@ -13,14 +18,19 @@
   <hr>
 
   <% @posts.each do |post| %>
-    <p>
-      <%= post.content %>
-    </p>
-    <% if post.liked? %>
-      <i class="far fa-thumbs-up liked"> <span class="liked">Like</span></i>
-    <% else %>
-      <i class="far fa-thumbs-up"> <%= link_to "Like", like_path(post), class: "not-liked", remote: true, method: :post  %>
-    <% end %>
+    <div class="card" style="width: 100%;">
+      <%= image_tag post.post_image.variant(resize: "150x150"), class: 'card-img-top' if post.post_image.attached? %>
+      <div class="card-body">
+        <p class="card-text"><%= post.content %></p>
+      </div>
+      <div class="card-footer text-muted">
+        <% if post.liked? %>
+          <i class="far fa-thumbs-up liked"></i><span class="liked">Like</span>
+        <% else %>
+          <i class="far fa-thumbs-up"></i><%= link_to "Like", like_path(post), class: "not-liked", remote: true, method: :post %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
   </div>
 </div>
