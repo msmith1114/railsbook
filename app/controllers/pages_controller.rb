@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     def home
         if user_signed_in?
             @post = Post.new
+            @comment = Comment.new
             @user = current_user
             friend_ids = @user.friends.ids
             friend_ids << current_user.id

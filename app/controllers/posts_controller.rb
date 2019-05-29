@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def create
     @user = current_user
     @post = @user.posts.new(post_params)
+    @comment = Comment.new
     friend_ids = @user.friends.ids
     friend_ids << current_user.id
     @posts = Post.where(user_id: friend_ids)

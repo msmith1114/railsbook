@@ -11,10 +11,19 @@
       </div>
       <div class="card-footer text-muted">
         <% if post.liked? %>
-          <i class="far fa-thumbs-up liked"></i><span class="liked">Like</span>
+          <i class="far fa-thumbs-up liked"></i><span class="liked"> Like</span>
         <% else %>
-          <i class="far fa-thumbs-up"></i><%= link_to "Like", like_path(post), class: "not-liked", remote: true, method: :post %>
+          <i class="far fa-thumbs-up"></i><%= link_to " Like", like_path(post), class: "not-liked", remote: true, method: :post %>
         <% end %>
+        <span style="float: right;"><i class="far fa-comment"></i><strong> Comment</strong></span>
       </div>
+    </div>
+    <div id="<%= post.id %>" class="comment-toggle">
+      <%= form_for [post,@comment] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :comment, placeholder: "Write a comment...", class: "form-control"  %>
+      </div>
+      <%= f.submit "Comment", class: "btn btn-info" %>
+      <% end %>
     </div>
   <% end %>
