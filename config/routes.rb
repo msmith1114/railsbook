@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  # Device 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  # Devise 
+  devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     post 'login', to: 'devise/sessions#create'

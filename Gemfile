@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Devise for User Auth
 gem "devise", ">= 4.6.0"
 gem 'image_processing', '~> 1.2'
+# Omniauth gem for facebook integration
+gem 'omniauth-facebook'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -53,6 +55,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Preview emails in development
+  gem "letter_opener"
 
 end
 
