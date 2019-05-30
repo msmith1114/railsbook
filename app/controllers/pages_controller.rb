@@ -7,7 +7,7 @@ class PagesController < ApplicationController
             @user = current_user
             friend_ids = @user.friends.ids
             friend_ids << current_user.id
-            @posts = Post.where(user_id: friend_ids)
+            @posts = Post.where(user_id: friend_ids).order! 'created_at DESC'
         else
             redirect_to sign_up_path
         end

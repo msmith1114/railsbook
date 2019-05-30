@@ -1,5 +1,6 @@
+  <div>
   <% @posts.each do |post| %>
-    <div class="card border-primary mb-3" style="width: 100%;">
+    <div class="card border-primary mb-2" style="width: 100%;">
     <div class="card-header">
       <blockquote class="blockquote mb-0">
         <footer class="blockquote-footer"><%=link_to post.user.full_name, user_path(post.user) %> <small><%=time_ago_in_words(post.created_at)%> ago</small></footer>
@@ -13,17 +14,26 @@
         <% if post.liked? %>
           <i class="far fa-thumbs-up liked"></i><span class="liked"> Like</span>
         <% else %>
-          <i class="far fa-thumbs-up"></i><%= link_to " Like", like_path(post), class: "not-liked", remote: true, method: :post %>
+          <i id="like-icon-<%=post.id%>"class="far fa-thumbs-up"></i><%= link_to " Like", like_path(post), id: "like-link-#{post.id}" , class: "not-liked", remote: true, method: :post %>
         <% end %>
         <span style="float: right;"><i class="far fa-comment"></i><strong> Comment</strong></span>
       </div>
     </div>
     <div id="<%= post.id %>" class="comment-toggle">
       <%= form_for [post,@comment] do |f| %>
-      <div class="form-group">
-        <%= f.text_area :comment, placeholder: "Write a comment...", class: "form-control"  %>
+      <div class="form-group mb-1">
+        <%= f.text_area :comment, placeholder: "Write a comment...", class: "form-control comment-field"  %>
       </div>
-      <%= f.submit "Comment", class: "btn btn-info" %>
+      <%= f.submit "Comment", class: "btn btn-info mb-1 mt-1" %>
       <% end %>
+      <div class="list-group mb-5">
+        <% post.comments.each do |comment| %>
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+          <p class="mb-1"><%= comment.comment %></p>
+          <small><%= comment.user.full_name %> &#8226; <small><%=time_ago_in_words(comment.created_at)%> ago</small></small>
+        </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
+  <div>

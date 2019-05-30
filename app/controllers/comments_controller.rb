@@ -1,9 +1,8 @@
 class CommentsController < ApplicationController
 
     def create
-        @user = current_user
         @post = Post.find(params[:post_id])
-        @comment = @post.comments.new(comment_params)
+        @comment = @post.comments.new(comment_params.merge(user: current_user))
         if @comment.save
             flash.notice = "Comment successfully saved"
             redirect_to root_path

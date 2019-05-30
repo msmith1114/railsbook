@@ -1,0 +1,4 @@
+const likeButton = document.getElementById('like-icon-<%=@post.id%>');
+likeButton.outerHTML = '<i class="far fa-thumbs-up liked"></i>';
+const likeLink = document.getElementById('like-link-<%=@post.id%>');
+likeLink.outerHTML = '<span class="liked"> Like</span>';

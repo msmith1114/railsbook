@@ -17,10 +17,13 @@ class PostsController < ApplicationController
   end
 
   def like
-    post = Post.find(params[:id])
-    like = post.likes.new(user_id: current_user.id)
+    @post = Post.find(params[:id])
+    like = @post.likes.new(user_id: current_user.id)
     if like.save
-      #nothing for now
+      respond_to do |format|
+        format.html { redirect_to root_path } 
+        format.js  # <-- will render `app/views/posts/update.js.erb`
+      end
     else
       flash[:alert] = "You have already liked that post"
       redirect_to current_user
