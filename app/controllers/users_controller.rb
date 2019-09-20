@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
 
     def search
-        @users = User.where('first_name LIKE ?', "%#{params[:q]}%")
+        @users = User.where('lower(first_name) LIKE ? OR lower(last_name) LIKE ?', "%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
     end 
 
     private
