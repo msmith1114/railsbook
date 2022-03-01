@@ -29,7 +29,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Devise for User Auth
 gem "devise", ">= 4.6.0"
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 # Omniauth gem for facebook integration
 gem 'omniauth-facebook'
 # Use Redis adapter to run Action Cable in production
