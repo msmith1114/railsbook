@@ -1,25 +1,54 @@
-# README
+# RailsBook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails project from The Odin Project.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+### Prerequisites
+Make sure you have the following installed:
+- Ruby (check version in `.ruby-version` if present)
+- Rails (`gem install rails`)
+- Bundler (`gem install bundler`)
+- Node.js and Yarn (for JavaScript dependencies)
+- SQLite3 (or the database specified in `config/database.yml`)
 
-* System dependencies
+### Setup
 
-* Configuration
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/msmith1114/railsbook.git
+   cd railsbook
+   ```
 
-* Database creation
+2. **Install dependencies**
+   ```bash
+   bundle install
+   yarn install
+   ```
 
-* Database initialization
+3. **Setup the database**
+   ```bash
+   rails db:create
+   rails db:migrate
+   ```
 
-* How to run the test suite
+4. *(Optional)* **Seed the database**
+   ```bash
+   rails db:seed
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Run the Application
 
-* Deployment instructions
+Start the Rails server:
+```bash
+rails server
+```
 
-* ...
-# railsbook
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Notes
+- Adjust the Ruby and Rails versions if specified in the repository.
+- If you're using a different database (PostgreSQL/MySQL), update your `config/database.yml`.
+- Environment variables (if needed) should be set in `.env` or via `rails credentials:edit`.
